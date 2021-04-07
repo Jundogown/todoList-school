@@ -1,18 +1,27 @@
-import React from 'react'
-import TodoTemplate from './components/TodoTemplete';
-import TodoInsert from './components/TodoInsert'
+import React from 'react';
+import { createGlobalStyle } from 'styled-components';
+import TodoTemplate from './components/TodoTemplate';
+import TodoHead from './components/TodoHead';
 import TodoList from './components/TodoList';
-import './App.css';
+import TodoCreate from './components/TodoCreate';
+import { TodoProvider } from './TodoContext';
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background: #e9ecef
+  }
+`;
 
 const App = () => {
   return (
-    <div className="App">
+    <TodoProvider>
+      <GlobalStyle />
       <TodoTemplate>
-        <TodoInsert/>
-          <TodoList/>
-        {/* 17번 전도권 */}
-      </TodoTemplate>  
-    </div>
+        <TodoHead />
+        <TodoList />
+        <TodoCreate />
+      </TodoTemplate>
+    </TodoProvider>
   );
 }
 
